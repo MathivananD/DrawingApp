@@ -3,4 +3,5 @@
     <string name="small_brush">Small brush</string>
     <string name="large_brush">Large brush</string>
     <string name="medium_brush">Medium Brush</string>
+    <string name="please_wait_till_loading">Please wait till loading</string>
 </resources>

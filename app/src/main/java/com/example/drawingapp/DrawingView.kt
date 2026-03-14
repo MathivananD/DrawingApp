@@ -7,8 +7,10 @@ import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
 import android.graphics.Path
+import android.os.Build
 import android.util.Log
 import android.util.TypedValue
+import androidx.annotation.RequiresApi
 import androidx.core.graphics.createBitmap
 import java.util.logging.Logger
 import androidx.core.graphics.toColorInt
@@ -23,6 +25,26 @@ class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs) 
     private var canvas: Canvas? = null
 
     private var mPaths = ArrayList<CustomPath>()
+    private var undoPaths = ArrayList<CustomPath>()
+
+
+
+   fun undo(){
+
+     val removedPath=  mPaths.removeAt(mPaths.size-1)
+       undoPaths.add(removedPath);
+       invalidate()
+
+   }
+
+
+
+    fun redo(){
+        val removedPath=  undoPaths.removeAt(undoPaths.size-1)
+        mPaths.add(removedPath);
+        invalidate()
+
+    }
 
     init {
         setUpDrawing()
